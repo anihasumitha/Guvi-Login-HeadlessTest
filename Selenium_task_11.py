@@ -22,7 +22,7 @@ class Locators:
     profile_icon='dropdown_title'
     sign_out_button="//div[@id='dropdown_contents' and text()='Sign Out']"
 
-#
+#Class to perform operations regarding login in to Guvi webpage
 class GuviLogin(Data,Locators):
     def __init__(self):
         # Code for headless browsing in chrome
@@ -43,6 +43,7 @@ class GuviLogin(Data,Locators):
         except Exception as error:
             print("Automation failed to start",error)
 
+    #method to navigate to login page
     def click_login_page(self):
             try:
                 self.start()
@@ -56,7 +57,7 @@ class GuviLogin(Data,Locators):
                 print("Error: Login button not found", e)
                 return False
 
-
+    #Method to perform log in operation
     def login(self):
         try:
                 self.click_login_page()
@@ -75,6 +76,7 @@ class GuviLogin(Data,Locators):
             print("Automation Flow error",e)
             return False
 
+    #Method to perform log out operation
     def logout(self):
 
         try:
@@ -99,6 +101,7 @@ class GuviLogin(Data,Locators):
             print("Logout unsuccessful:", e)
             return False
 
+    #Method to log in with invalid credentials
     def login_invalid_credentials(self):
         try:
             self.logout()
@@ -124,6 +127,7 @@ class GuviLogin(Data,Locators):
         finally:
             self.stop()
 
+    #Method to check if the email box is visible
     def email_box_visible(self):
         self.click_login_page()
         email_input_box=self.driver.find_element(by=By.ID,value=Locators.email_locator)
@@ -133,6 +137,7 @@ class GuviLogin(Data,Locators):
         else:
             return False
 
+    # Method to check if the password box is visible
     def password_box_visible(self):
         password_input_box=self.driver.find_element(by=By.ID,value=Locators.password_locator)
         sleep(3)
@@ -141,6 +146,7 @@ class GuviLogin(Data,Locators):
         else:
             return False
 
+    # Method to check if the submit button is visible
     def submit_button_visible(self):
         submit_button_box = self.driver.find_element(by=By.XPATH, value=Locators.submit_button_locator)
         sleep(3)
@@ -149,6 +155,7 @@ class GuviLogin(Data,Locators):
         else:
             return False
 
+    # Method to check if the email box is clickable
     def email_box_enabled(self):
         email_box=self.driver.find_element(by=By.ID,value=Locators.email_locator)
         sleep(3)
@@ -157,6 +164,7 @@ class GuviLogin(Data,Locators):
         else:
             return False
 
+    # Method to check if the password box is clickable
     def password_box_enabled(self):
         password_input_box=self.driver.find_element(by=By.ID,value=Locators.password_locator)
         sleep(5)
@@ -165,6 +173,7 @@ class GuviLogin(Data,Locators):
         else:
             return False
 
+    # Method to check if the submit button is clickable
     def submit_button_enabled(self):
         submit_button_box=self.driver.find_element(by=By.XPATH,value=Locators.submit_button_locator)
         sleep(3)
@@ -173,6 +182,7 @@ class GuviLogin(Data,Locators):
         else:
             return False
 
+    # Method to quit the automation
     def stop(self):
         self.driver.quit()
 
