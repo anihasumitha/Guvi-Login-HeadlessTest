@@ -3,8 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from time import  sleep
 
 #Creating Data class to store all data 
@@ -27,7 +25,12 @@ class Locators:
 #
 class GuviLogin(Data,Locators):
     def __init__(self):
-        self.driver= webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        # Code for headless browsing in chrome
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
+
+        self.driver= webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+
 
     #start method to launch automation
     def start(self):
